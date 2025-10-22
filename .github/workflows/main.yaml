@@ -1,0 +1,30 @@
+# Nombre del Workflow
+name: Desplegar en Surge.sh
+
+# El trigger: se ejecuta cada vez que haces 'push' a la rama 'main'
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  # Definimos un trabajo (job) llamado 'deploy'
+  deploy:
+    # Usamos la última versión de Ubuntu para ejecutar el job
+    runs-on: ubuntu-latest
+    
+    # Pasos que se ejecutarán
+    steps:
+      # 1. Clona el código del repositorio en la máquina virtual
+      - uses: actions/checkout@v4
+
+      # 2. Usa una Acción pre-hecha para desplegar en Surge.sh
+      - name: Deploy to Surge.sh
+        uses: dswistowski/surge-sh-action@v1
+        with:
+          # El dominio que quieres usar. ¡Debe ser único!
+          domain: 'etarlin1erParcial.surge.sh'
+          
+          # Lee los secretos que guardamos en GitHub
+          login: ${{ secrets.SURGE_LOGIN }}
+          token: ${{ secrets.SURGE_TOKEN }}
