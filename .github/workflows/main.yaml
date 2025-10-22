@@ -23,7 +23,7 @@ jobs:
         uses: dswistowski/surge-sh-action@v1
         with:
           # El dominio que quieres usar. ¡Debe ser único!
-          domain: 'etarlin1erParcial.surge.sh'
+          domain: 'etarlinprimerparcial.surge.sh'
           
           # Lee los secretos que guardamos en GitHub
           login: ${{ secrets.SURGE_LOGIN }}
